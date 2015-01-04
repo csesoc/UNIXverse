@@ -11,7 +11,7 @@ Clone the repository and submodules:
     cd UNIXverse
     git submodule update --init --recursive
 
-Run the server
+Run the server from within the UNIXverse\ -\ Living\ in\ a\ Shell directory
 
     hugo server --watch [-t `themename`]
 
