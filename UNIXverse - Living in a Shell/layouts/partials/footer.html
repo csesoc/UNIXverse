@@ -1,3 +1,5 @@
+{{ $baseurl := .Site.BaseUrl }}
+
     <footer class='col-xs-10 col-xs-offset-1'>
       <div class='row'>
         <div class='col-lg-12'>
@@ -24,5 +26,11 @@
         </div>
       </div>
     </footer>
+
+    <script src='{{ $baseurl }}/js/jquery.js'></script>
+    <script src='{{ $baseurl }}/js/bootstrap.min.js'></script>
+    <script src='{{ $baseurl }}/js/shCore.js'></script>
+    <script src='{{ $baseurl }}/js/shBrushBash.js'></script>
+    <script type='text/javascript'>SyntaxHighlighter.all();</script>
   </body>
 </html>
