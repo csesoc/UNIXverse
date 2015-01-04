@@ -1,8 +1,44 @@
 {{ partial "header.html" . }}
+{{ $baseurl := .Site.BaseUrl }}
 
 <section id='main'>
-  <div>
-      <h1 id='title'>{{.Site.Title}}</h1>
+  <div class='container'>
+    <div class='jumbotron'>
+      <h1>
+        <span class='fa-stack'>
+          <i class='fa fa-square fa-stack-2x'></i>
+          <i class='fa fa-terminal fa-stack-1x fa-inverse'></i>
+
+        </span>
+        Hello from the UNIXverse
+      </h1>
+
+      <div style='text-align: center'>
+        <p><strong>Welcome to the <em>Beginner's Guide to the UNIXverse</em> workshop!</strong></p>
+      </div>
+
+      <p>
+        This practical programming workshop aims to introduce useful
+        programming tools to the programmer. The workshop will cover useful
+        <a href='{{ $baseurl }}/topic/filters'>UNIX filters</a>,
+        <a href='{{ $baseurl }}/topic/regex'>Regular Expressions</a>,
+        and <a href='{{ $baseurl }}/topic/scripting'>Shell Scripting</a>.
+      </p>
+      <p>
+        Attendees will take away a set of useful skills which can be used for
+        any type of programming in the future (especially on UNIX, the OS for
+        real men (and women)), including project work and programming
+        competitions.
+      </p>
+      <p>
+        Stop living in a shell and begin coding in one!
+      </p>
+      <div style='text-align: center'>
+        <p>
+          <a class='btn btn-success btn-lg' href='{{ $baseurl }}/intro' role='button'>Begin your journey to the UNIXverse <i class='fa fa-arrow-right'></i></a>
+        </p>
+      </div>
+    </div>
   </div>
 </section>
 
