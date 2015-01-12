@@ -396,3 +396,9 @@ Lesson Complete!
 
 Congratulations, you have just completed the basics of shell. Let's move on
 while we're on a roll!
+
+<div class='text-center'>
+  <a href='/UNIXverse/filters' class='btn btn-lg btn-success' type='button'>
+    UNIX Filters<i class='fa fa-arrow-right'></i>
+  </a>
+</div>
