@@ -470,4 +470,239 @@ Well ... apart from that one ...</pre>
 echon
 -----
 
+Write a shell script a program echon.sh which given exactly two arguments, an
+integer _n_ and a string, prints the string _n_ times. For example:
 
+<pre class='brush: bash;'>
+% ./echon.sh 5 hello
+hello
+hello
+hello
+hello
+hello
+% ./echon.sh 0 nothing
+% ./echon.sh 1 goodbye
+goodbye
+%
+</pre>
+
+Your script should print an error message if it is not given exactly 2
+arguments. For example:
+
+<pre class='brush: bash;'>
+% ./echon.sh 
+Usage: ./echon.sh
+% ./echon.sh 1 2 3
+Usage: ./echon.sh
+</pre>
+
+Also get your script to print an error message if its first argument isn't a
+non-negative integer. For example:
+
+<pre class='brush: bash;'>
+% ./echon.sh hello world
+./ex2.sh: argument 1 must be a non-negative integer
+% ./echon.sh -42 lines
+./echon.sh: argument 1 must be a non-negative integer
+</pre>
+
+<div class="alert alert-info">
+  Hint: you'll need to use the shell if, while and exit statements, shell
+  arithmetic and the test command.
+</div>
+
+File sizes
+----------
+
+Write a shell script file_sizes.sh which prints the names of the files in the
+current directory, splitting them into three categories: _small_,
+_medium-sized_ and _large_. A file is considered _small_ if it contains less
+than 10 lines, _medium-sized_ if contains less than 100 lines, otherwise it is
+considered _large_.
+
+Your script should always print exactly three lines of output. Files should be
+listed in alphabetic order on each line. Your shell-script should match
+character-for-character the output shown in the example below. Notice the
+creation of a separate directory for testing and the use of the script from the
+last question to produce test files. You could also produce test files manually
+using an editor.
+
+<pre class='brush: bash;'>
+% mkdir test
+% cd test
+% ../echon.sh 5 text &gt;a
+% ../echon.sh 505 text &gt;bbb
+% ../echon.sh 17 text &gt;cc
+% ../echon.sh 10 text &gt;d
+% ../echon.sh 1000 text &gt;e
+% ../echon.sh 0 text &gt;empty
+% ls -l
+total 24
+-rw-r--r-- 1 andrewt andrewt   25 Mar 24 10:37 a
+-rw-r--r-- 1 andrewt andrewt 2525 Mar 24 10:37 bbb
+-rw-r--r-- 1 andrewt andrewt   85 Mar 24 10:37 cc
+-rw-r--r-- 1 andrewt andrewt   50 Mar 24 10:37 d
+-rw-r--r-- 1 andrewt andrewt 5000 Mar 24 10:37 e
+-rw-r--r-- 1 andrewt andrewt    0 Mar 24 10:37 empty
+% ../file_sizes.sh 
+Small files: a empty
+Medium-sized files: cc d
+Large files: bbb e
+% rm cc d
+% ../echon.sh 10000 . &gt;lots_of_dots
+% ls -l
+total 36
+-rw-r--r-- 1 andrewt andrewt    25 Mar 24 10:37 a
+-rw-r--r-- 1 andrewt andrewt  2525 Mar 24 10:37 bbb
+-rw-r--r-- 1 andrewt andrewt  5000 Mar 24 10:37 e
+-rw-r--r-- 1 andrewt andrewt     0 Mar 24 10:37 empty
+-rw-r--r-- 1 andrewt andrewt 20000 Mar 24 10:39 lots_of_dots
+% ../file_sizes.sh 
+Small files: a empty
+Medium-sized files:
+Large files: bbb e lots_of_dots
+%
+</pre>
+
+<div class="alert alert-info">
+  Hint: you can use the command `wc` to discover how many lines are in a file.
+  You probably want to use the shell's back quotes, its `if` statement, and
+  the test command.
+</div>
+
+Challenge question
+------------------
+
+Write a shell script courses.sh which prints a list of UNSW courses with the
+given prefix by extracting them from the UNSW handbook pages. For example:
+
+<pre class='brush: bash;'>
+% courses.sh JAPN
+JAPN4500 Japanese Studies Honours (Research)
+JAPN4550 Combined  Japanese Studies Honours (Research)
+JAPN5000 Special Project
+JAPN5011 Japanese Teaching Practicum
+JAPN5100 Business Japanese A
+JAPN5101 Business Japanese B
+JAPN5102 Professional Japanese A
+JAPN5103 Professional Japanese B
+% courses.sh MATH | wc
+    124     566    4751
+% courses.sh COMP | grep Soft
+COMP2041 Software Construction: Techniques and Tools
+COMP3111 Software Engineering
+COMP3141 Software System Design and Implementation
+COMP3431 Robotic Software Architecture
+COMP3711 Software Project Management
+COMP4001 Object-Oriented Software Development
+COMP4161 Advanced Topics in Software Verification
+COMP4181 Language-based Software Safety
+COMP9041 Software Construction: Techniques and Tools
+COMP9116 Software System Development Using the B-Method and B-Toolkit
+COMP9117 Architecture of Software Systems
+COMP9181 Language-based Software Safety
+COMP9431 Robotic Software Architecture
+</pre>
+
+Your script must download the handbook web pages and extract the information
+from them when it is run.
+
+<div class="alert alert-info">
+  This task can be done using the usual tools of grep, sed, sort, and uniq. The
+  regular expressions take some thought.
+</div>
+
+The UNSW handbook uses separate web pages for undergraduate and postgraduate
+courses. These two web pages would need to be downloaded for the above example (JAPN):
+
+http://www.handbook.unsw.edu.au/vbook2011/brCoursesByAtoZ.jsp?StudyLevel=Undergraduate&descr=J
+and
+http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Postgraduate&descr=J
+
+The command `wget` can be used to download a web page and has an option which
+allows it to be used in shell pipelines. For example:
+
+<pre class='brush: bash;'>
+% wget -q -O- "http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Undergraduate&amp;descr=J" | wc
+    213     982   14222
+</pre>
+
+jpg2png
+-------
+
+Write a shell script jpg2png.sh which converts all images in JPEG format in the
+current directory to PNG format.
+
+You can assume that JPEG files and only JPEG files have the suffix `.jpg`.
+
+If the conversion is successful the JPEG file should be removed.
+
+Your script should stop with an appropriate error message and exit status if
+the PNG file already exists.
+
+<pre class='brush: bash;'>
+% wget http://www.cse.unsw.edu.au/~cs2041/lab/sh/images/images.zip
+% unzip images.zip
+Archive:  images.zip
+  inflating: Johannes Vermeer - The Girl With The Pearl Earring.jpg  
+  inflating: nautilus.jpg            
+  inflating: panic.jpg               
+  inflating: penguins.jpg            
+  inflating: shell.jpg               
+  inflating: stingray.jpg            
+  inflating: treefrog.jpg            
+% ./jpg2png.sh
+% ls
+Johannes Vermeer - The Girl With The Pearl Earring.png  panic.png
+email_image.sh                                          penguins.png
+images.zip                                              shell.png
+index.php                                               stingray.png
+jpg2png.sh                                              treefrog.png
+nautilus.png
+% cp -p /home/cs2041/public_html/lab/sh/images/penguins.jpg
+% ./jpg2png.sh
+penguins.png already exists
+</pre>
+
+<pre class='brush: bash;'>
+% wget -q -O- "http://www.handbook.unsw.edu.au/vbook2012/brCoursesByAtoZ.jsp?StudyLevel=Undergraduate&amp;descr=J" | wc
+    213     982   14222
+</pre>
+
+<div class="alert alert-info">
+  You may find `sed` and back quotes useful here.
+</div>
+
+The tool `convert` will convert between many different image formats. Example:
+
+    % convert penguins.jpg penguins.png
+
+Email image
+-----------
+
+Write a shell script email_image.sh which given a list of image files as
+arguments displays them one-by-one. After the user has viewed each image the
+script should prompt the user for an e-mail address. If the user does enter an
+email address, the script should prompt the user for a message to accompany the
+image and then send the image to that e-mail address.
+
+<pre class='brush: bash;'>
+% ./email_image.sh penguins.png treefrog.png 
+Address to e-mail this image to? andrewt@cse.unsw.edu.au
+Message to accompany image? Penguins are cool.
+penguins.png sent to andrewt@cse.unsw.edu.au
+Address to e-mail this image to? andrewt@cse.unsw.edu.au
+Message to accompany image? This is a White-lipped Tree Frog
+treefrog.png sent to andrewt@cse.unsw.edu.au
+</pre>
+
+<div class="alert alert-info">
+  The program `display` can be used to view image files
+</div>
+
+The program `mutt` can be used to send mail from the command line including
+attachments, for example:
+
+<pre class='brush: bash;'>
+% echo 'Penguins are cool.'|mutt -s 'penguins!' -a penguins.png -- nobody@nowhere.com
+</pre>
