@@ -175,3 +175,121 @@ Its useful command line options include:
    columns in input data which are separated by tabs (unless another column
    delimiter is specified using the following option)
 * `-d'c'` Sets the character _c_ as the column separator
+
+<pre class="brush:bash">
+&gt; cat file1
+hello world
+
+&gt; cut -c2 file1     &gt; cut -c1-5 file1
+e                   hello
+
+&gt; cut -c1,3-5,8 file1
+hlloo
+</pre>
+
+`diff`
+======
+
+`diff` compares files against each other and outputs information about the
+differences of the files. `diff` specifies if a line appears in file1 but not
+in file2 and visa versa. This is very useful for checking the a program's
+output against its expected output.
+
+Its useful command line options include:
+
+* `-i`  ignore case
+* `-B` ignore blank lines
+
+<pre class="brush:bash">
+&gt; cat file1      &gt; cat file2
+line0            line0
+line1            line2
+line2            line1
+
+&gt; diff file1 file2
+2d1
+&lt; line1
+3a3
+&gt; line1
+</pre>
+
+`tr`
+====
+
+`tr`, or transliterate, converts a set of characters to another set of
+characters. Usage: `tr 'sourceChars' 'destinationChars'`. The examples will best explain how tr works. tr has some useful shortcuts. For example, 'a-z' is a shorthand for writing 'abcdefghijklmnopqrstuvwxyz'.
+
+Its useful command line options include:
+
+* `-c` Map every character _not_ provided in the source chars
+* `-d` Delete every character in the source chars from the input
+
+<pre class="brush:bash">
+&gt; cat file1
+compclub
+
+&gt; tr 'a-z' 'A-Z' &lt; file1      &gt; cat file1 | tr 'c' 'f'
+COMPCLUB                      fompflub
+</pre>
+
+Exercises
+=========
+
+Sort Practice
+-------------
+
+Consider the columnated (space-delimited) data file below containing
+information about marks for a single subject.
+
+    2111321 37 FL
+    2166258 67 CR
+    2168678 84 DN
+    2186565 77 DN
+    2190546 78 DN
+    2210109 50 PS
+    2223455 95 HD
+    2266365 55 PS
+
+Using `sort` and its command line options output the above data in the
+following formats:
+
+1. In order of student number
+2. In ascending order of mark
+3. In descending order of mark
+
+Some filter questions
+---------------------
+
+1. How could you use head and tail in a pipeline to display lines 25 through 75
+   of a file?
+2. Using the above data set find a filter that will only display the student
+   number and their grade, not their raw mark. But the catch is you need to sort
+   the data by their raw mark before displaying it.
+
+Here's one last question employing `uinq`.
+
+    2111321 37 FL
+    2111321 37 FL
+    2166258 67 CR
+    2168678 84 DN
+    2266365 55 PS
+    2186565 77 DN
+    2190546 78 DN
+    2266365 55 PS
+    2210109 50 PS
+    2168678 84 DN
+    2223455 95 HD
+    2266365 55 PS
+
+Here is the marks data from above after Brad Hall tried to edit it. He got very
+confused and ended up duplicating a lot of different student data.
+
+1. First try `uniq` on the data and see the results. There are still duplicates.
+2. Now figure out ho you can appropriately use filters to remove all of the duplicates.
+3. Now give Brad Hall a jelly baby so he doesn't get confused again!
+
+<div class='text-center'>
+  <a href='/UNIXverse/scripting' class='btn btn-lg btn-success' type='button'>
+    Scripting<i class='fa fa-arrow-right'></i>
+  </a>
+</div>
