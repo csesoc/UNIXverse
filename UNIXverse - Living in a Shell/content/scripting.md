@@ -130,6 +130,7 @@ Here's an example script that demonstrates variable usage in Bash:
   Note: spaces matter, do not put spaces around the = symbol or your variables
   won't work.
 </div>
+
 <pre class='brush: bash;'>
 read x    # read a value into variable x
 y=John    # assign a value to the variable y
@@ -490,7 +491,7 @@ Your script should print an error message if it is not given exactly 2
 arguments. For example:
 
 <pre class='brush: bash;'>
-% ./echon.sh 
+% ./echon.sh
 Usage: ./echon.sh
 % ./echon.sh 1 2 3
 Usage: ./echon.sh
@@ -544,7 +545,7 @@ total 24
 -rw-r--r-- 1 andrewt andrewt   50 Mar 24 10:37 d
 -rw-r--r-- 1 andrewt andrewt 5000 Mar 24 10:37 e
 -rw-r--r-- 1 andrewt andrewt    0 Mar 24 10:37 empty
-% ../file_sizes.sh 
+% ../file_sizes.sh
 Small files: a empty
 Medium-sized files: cc d
 Large files: bbb e
@@ -557,7 +558,7 @@ total 36
 -rw-r--r-- 1 andrewt andrewt  5000 Mar 24 10:37 e
 -rw-r--r-- 1 andrewt andrewt     0 Mar 24 10:37 empty
 -rw-r--r-- 1 andrewt andrewt 20000 Mar 24 10:39 lots_of_dots
-% ../file_sizes.sh 
+% ../file_sizes.sh
 Small files: a empty
 Medium-sized files:
 Large files: bbb e lots_of_dots
@@ -644,13 +645,13 @@ the PNG file already exists.
 % wget http://www.cse.unsw.edu.au/~cs2041/lab/sh/images/images.zip
 % unzip images.zip
 Archive:  images.zip
-  inflating: Johannes Vermeer - The Girl With The Pearl Earring.jpg  
-  inflating: nautilus.jpg            
-  inflating: panic.jpg               
-  inflating: penguins.jpg            
-  inflating: shell.jpg               
-  inflating: stingray.jpg            
-  inflating: treefrog.jpg            
+  inflating: Johannes Vermeer - The Girl With The Pearl Earring.jpg
+  inflating: nautilus.jpg
+  inflating: panic.jpg
+  inflating: penguins.jpg
+  inflating: shell.jpg
+  inflating: stingray.jpg
+  inflating: treefrog.jpg
 % ./jpg2png.sh
 % ls
 Johannes Vermeer - The Girl With The Pearl Earring.png  panic.png
@@ -687,7 +688,7 @@ email address, the script should prompt the user for a message to accompany the
 image and then send the image to that e-mail address.
 
 <pre class='brush: bash;'>
-% ./email_image.sh penguins.png treefrog.png 
+% ./email_image.sh penguins.png treefrog.png
 Address to e-mail this image to? andrewt@cse.unsw.edu.au
 Message to accompany image? Penguins are cool.
 penguins.png sent to andrewt@cse.unsw.edu.au
